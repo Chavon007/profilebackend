@@ -5,12 +5,17 @@ import cors from "cors";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://salvation-azuh.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use("/", email);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`server is running on http://localhost:${PORT}`);
+  console.log(`server is running on ${PORT}`);
 });
